@@ -1,0 +1,10 @@
+name: fasthtml-app
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - python-fasthtml==0.12.27
+    - sqlite-minutils>=4.0.3
