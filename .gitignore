@@ -32,9 +32,6 @@ AppDir/
 squashfs-root/
 *.AppDir/
 
-# Build resources
-build-resources/
-
 # Temporary files
 *.tmp
 *.temp
