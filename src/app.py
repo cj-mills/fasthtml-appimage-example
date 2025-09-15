@@ -39,9 +39,9 @@ else:
 
 # Create the FastHTML app
 app, rt = fast_app(
+    pico=True, 
     hdrs=(
-        Link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css'),
-        Script(src='https://unpkg.com/htmx.org@1.9.10'),
+        Script(src='https://unpkg.com/htmx.org@2.0.7'),
     ),
     title="FastHTML AppImage Demo"
 )
