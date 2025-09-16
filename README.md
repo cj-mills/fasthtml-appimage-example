@@ -14,16 +14,15 @@ This example demonstrates how to package a FastHTML application as a portable Li
 
 ```
 fasthtml-appimage-example/
-├── src/                    # FastHTML application source
-│   └── app.py             # Main FastHTML application
-├── AppDir/                # AppImage directory structure (created during build)
-├── build-resources/       # Build resource (used during build)
-│   ├── AppRun            # Entry point script
-│   └── fasthtml-demo.desktop  # Desktop entry file
-├── environment.yml        # Conda environment specification
-├── requirements.txt       # Python package requirements
-├── build.sh              # Build script
-└── README.md             # This file
+├── build-resources/          # Build resource (used during build)
+│   ├── AppRun                # Entry point script
+│   └── fasthtml-demo.desktop # Desktop entry file
+├── build.sh                  # Build script
+├── environment.yml           # Conda environment specification
+├── README.md                 # This file
+├── requirements.txt          # Python package requirements
+└── src/                      # FastHTML application source
+    └── app.py                # Main FastHTML application
 ```
 
 ## Prerequisites
@@ -41,8 +40,8 @@ Optional:
 
 1. Clone or download this example:
 ```bash
-git clone <repository>
-cd fasthtml-appimage-example
+git clone https://github.com/cj-mills/fasthtml-appimage-example.git
+cd ./fasthtml-appimage-example
 ```
 
 2. Run the build script:
@@ -131,13 +130,13 @@ dependencies:
   - python=3.11
   - numpy  # Add conda packages here
   - pip:
-    - fasthtml
-    - new-package  # Add pip packages here
+    - -r requirements.txt
 ```
 
-2. Or edit `requirements.txt` for pip-only packages:
+2. Edit `requirements.txt` for pip-only packages:
 ```
-fasthtml==0.4.3
+python-fasthtml>=0.12.27
+sqlite-minutils>=4.0.3
 new-package==1.0.0
 ```
 
@@ -164,26 +163,12 @@ The AppImage size can be reduced by:
 3. **Using `--no-deps` for packages** with unnecessary dependencies
 4. **Excluding test files and documentation** from packages
 
-Typical sizes:
-- Minimal FastHTML AppImage: ~50-80MB
-- With additional packages: ~80-150MB
-- With scientific packages (numpy, pandas): ~150-250MB
-
 ## Troubleshooting
 
 ### AppImage won't run
 - Make it executable: `chmod +x FastHTMLDemo-*.AppImage`
 - Check architecture: `file FastHTMLDemo-*.AppImage`
 - Try extracting: `./FastHTMLDemo-*.AppImage --appimage-extract`
-
-### Port already in use
-- The app auto-finds free ports by default
-- Or specify a port: `FASTHTML_PORT=8080 ./FastHTMLDemo-*.AppImage`
-
-### Browser doesn't open
-- Check if browser is installed
-- Try different browser mode: `FASTHTML_BROWSER=none`
-- Open manually: Navigate to the URL shown in terminal
 
 ### Module import errors
 - Ensure all dependencies are in `environment.yml` or `requirements.txt`
@@ -229,13 +214,8 @@ The build script can be integrated into CI/CD pipelines:
     path: "*.AppImage"
 ```
 
-## License
-
-This example is provided as-is for demonstration purposes. Adapt and use it according to your needs.
-
 ## Resources
 
 - [FastHTML Documentation](https://fastht.ml/)
 - [AppImage Documentation](https://appimage.org/)
 - [Micromamba Documentation](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html)
-- [Python AppImage Guide](https://github.com/niess/python-appimage)
