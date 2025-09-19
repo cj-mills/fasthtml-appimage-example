@@ -37,14 +37,20 @@ else:
     # Running normally - use current directory
     WORK_DIR = Path.cwd()
 
+
+static_path = Path(__file__).absolute().parent
+
 # Create the FastHTML app
 app, rt = fast_app(
     pico=True, 
     hdrs=(
         Script(src='https://unpkg.com/htmx.org@2.0.7'),
     ),
-    title="FastHTML AppImage Demo"
+    title="FastHTML AppImage Demo",
+    static_path=str(static_path)
 )
+
+app.hdrs.append(Link(rel='icon', type='image/png', href='/static/box.png'))  # for PNG
 
 # State for demo
 todos = []
